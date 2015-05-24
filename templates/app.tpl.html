@@ -1,0 +1,40 @@
+<!doctype html>
+<html data-ng-app="nearbyApp">
+  <head>
+    <script src="{{ STATIC_URL }}js/angular.min.js"></script>
+    <script src="{{ STATIC_URL }}js/app/nearby.js"></script>
+  </head>
+  <body ng-controller="NearbyController as nearby">
+
+    {% verbatim %}
+    
+    <h1>Where are you?</h1>
+    <form name="whereareyou" data-ng-submit="updateListings()">
+      <input type="text" name="lat" data-ng-model="lat" placeholder="latitude"
+	     data-ng-pattern="/^[-0-9\.]+$/" maxlength="12" />
+      <input type="text" name="lng" data-ng-model="lng" placeholder="longitude"
+	     data-ng-pattern="/^[-0-9\.]+$/" maxlength="12" />
+      <input type="submit" value="What's nearby?" />
+
+      <div class="warning" data-ng-show="whereareyou.lat.$error.pattern">
+	Please enter a numeric latitude.
+      </div>
+
+      <div class="warning" data-ng-show="whereareyou.lng.$error.pattern">
+	Please enter a numeric longitude.
+      </div>
+
+    </form>
+
+    <hr />
+
+    <ul>
+      <li ng-repeat="node in nearbyNodes">
+	{{ node.tags.name }}
+      </li>
+    </ul>
+
+    {% endverbatim %}
+
+  </body>
+</html>

@@ -3,10 +3,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^api/', include('api.urls')),
-
-    # Examples:
-    # url(r'^$', 'locality.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^$', 'interface.views.home', name='home'),
 
     url(r'^admin/', include(admin.site.urls)),
 ]
